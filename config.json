@@ -1,0 +1,17 @@
+{
+    "Execution": {
+        "RefreshRate": 60,
+        "ColorThreshold": 20,
+        "ClickDuration": 0.0005,
+        "ScrollMultiplier": 100,
+        "WaitWithDelta": true,
+        "RandomWaitsLow": -0.5,
+        "RandomWaitsHigh": 0.5
+    },
+    "Keybind": {
+        "RecorderExitKey": "right alt",
+        "RecorderBreakpointKey": "right ctrl",
+        "ExecutionPanicKey": "right alt"
+    },
+    "Debug": true,
+}
