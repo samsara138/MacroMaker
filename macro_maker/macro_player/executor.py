@@ -194,7 +194,7 @@ def execute_macro(macro):
         action_type = entry["ActionType"].strip()
 
         if entry["Data"]:
-            action_data = entry["Data"].strip()
+            action_data = entry["Data"]
         else:
             action_data = ""
 
@@ -205,7 +205,7 @@ def execute_macro(macro):
             try:
                 sleep_duration = parse_float(action_data)
                 if globals.wait_with_delta:
-                    sleep_duration += random.uniform(globals.random_waits[0], globals.random_waits[1])
+                    sleep_duration += max(random.uniform(globals.random_waits[0], globals.random_waits[1]), 0)
             except ValueError:
                 low, high = parse_float_tuple(action_data)
                 sleep_duration = random.uniform(low, high)

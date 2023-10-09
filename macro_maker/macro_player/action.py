@@ -36,12 +36,12 @@ def mouse_scroll(x, y, magnitude):
 
 
 def move_to(x, y, duration):
-    print(x, y, duration)
     pyautogui.moveTo(x, y, duration)
 
 
 # Keyboard
 def type_string(string_to_send):
+    print(f"Typing: |{string_to_send}|")
     pyautogui.typewrite(string_to_send)
 
 

@@ -13,5 +13,5 @@
         "RecorderBreakpointKey": "right ctrl",
         "ExecutionPanicKey": "right alt"
     },
-    "Debug": true,
+    "Debug": true
 }

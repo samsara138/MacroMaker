@@ -1,2 +1,10 @@
 ActionType,Data,Comment
-Click,"(0, 0)"
+MoveTo,"(178, 186) | 3"
+Click,"(178, 186)"
+Type,"Hello, "
+Wait,1.5
+Type,I'm alive
+Wait,1
+Click,"(12, 40)"
+MoveTo,"(60, 132) | 1"
+Click,"(60, 132)",

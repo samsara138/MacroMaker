@@ -5,7 +5,8 @@ def clean_entry(entry):
     """
     Clean unnecessary white space in entry data
     """
-    entry["Data"] = entry["Data"].strip()
+    if entry["ActionType"] != "Type":
+        entry["Data"] = entry["Data"].strip()
     if entry["ActionType"] in ["Trigger", "BranchTrigger", "Click", "RClick", "Jump", "Drag", "MouseAction", "Value", "MoveTo", "Scroll"]:
         entry["Data"] = entry["Data"].replace(" ", "")
     return entry
