@@ -3,6 +3,9 @@
 Welcome to Macro Maker! Macro Maker is a versatile multitool designed to streamline the creation and execution of computer macros. 
 This tool allows you to record and play both mouse and keyboard actions with ease.
 
+![](https://github.com/samsara138/MacroMaker/blob/main/media/ShowcaseVideo.gif)
+
+
 The program can run in 3 modes:
 1. **Play mode**: The default mode, read and play a macro file
 2. **Record mode**: Capture your mouse and keyboard input and write them to a file
