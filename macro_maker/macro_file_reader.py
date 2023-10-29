@@ -7,9 +7,27 @@ def clean_entry(entry):
     """
     if entry["ActionType"] != "Type":
         entry["Data"] = entry["Data"].strip()
-    if entry["ActionType"] in ["Trigger", "BranchTrigger", "Click", "RClick", "Jump", "Drag", "MouseAction", "Value", "MoveTo", "Scroll"]:
+    if entry["ActionType"] in ["Trigger", "BranchTrigger", "Click", "RClick", "Jump", "Drag", "MouseAction", "Value",
+                               "MoveTo", "Scroll"]:
         entry["Data"] = entry["Data"].replace(" ", "")
     return entry
+
+
+def parse_variables(data):
+    val_lookup = {}
+    lines_to_remove = []
+    for i in range(len(data)):
+        entry = data[i]
+        if entry["ActionType"][0] == '$':
+            val_lookup[entry["ActionType"]] = entry["Data"]
+            lines_to_remove.append(i)
+        elif '$' in entry["Data"]:
+            for key in val_lookup:
+                if key in entry["Data"]:
+                    entry["Data"] = entry["Data"].replace(key, val_lookup[key])
+                    break
+    for i in lines_to_remove:
+        data.pop(i)
 
 
 def read_data(file_name="test_data.csv"):
@@ -24,6 +42,8 @@ def read_data(file_name="test_data.csv"):
 
         csv_reader = csv.DictReader(csv_data)
         csv_data = list(csv_reader)
+
+        parse_variables(csv_data)
 
         i = 0
         while i < len(csv_data):

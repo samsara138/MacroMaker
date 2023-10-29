@@ -8,21 +8,14 @@ from datetime import datetime
 import keyboard
 
 panic = False
-variable_lookup = {}
 
 
 def parse_int(value):
-    """
-    See if a variable is stored, then parse to int
-    """
-    return int(value) if value not in variable_lookup else int(variable_lookup[value])
+    return int(value)
 
 
 def parse_float(value):
-    """
-    See if a variable is stored, then parse to float
-    """
-    return float(value) if value not in variable_lookup else float(variable_lookup[value])
+    return float(value)
 
 
 def euclidean_distance(color1, color2):
@@ -140,29 +133,6 @@ def record_jump_points(data):
     return jump_points, jump_counters
 
 
-def record_variables(data):
-    """
-    Record and parse all variables
-    """
-    global variable_lookup
-    for entry in data:
-        if entry["ActionType"] == "Value":
-            print_log(f"Value entry found: {entry}")
-            name, value_str = parse_tuple(entry["Data"])
-            if name in variable_lookup:
-                print(f"Fatal Error: repeated variable name {name}, abort")
-                exit(11)
-            try:
-                val = int(value_str)
-            except ValueError:
-                try:
-                    val = float(value_str)
-                except ValueError:
-                    print(f"Fatal Error: cannot parse {data} to int or float for variable {name}, abort")
-                    exit(0)
-            variable_lookup[name] = val
-
-
 def on_key_event(event):
     """
     Listen to panic button
@@ -177,7 +147,6 @@ def on_key_event(event):
 def execute_macro(macro):
     index = 0
     jump_points, jump_counter = record_jump_points(macro)
-    record_variables(macro)
 
     print_log(f"Jump points: {jump_points}")
     print_log(f"Jump counters: {jump_counter}")
@@ -212,13 +181,14 @@ def execute_macro(macro):
             time.sleep(sleep_duration)
         elif action_type == "Trigger":
             x, y, target_color, wait_duration = parse_trigger_data(action_data)
+            wait_start = datetime.now()
+
             screenshot = ImageGrab.grab(all_screens=True)
             pixel = screenshot.getpixel((x, y))
-
-            wait_start = datetime.now()
             while euclidean_distance(pixel, target_color) > globals.color_threshold:
                 if panic:
                     panic_action()
+                print_log("Pixel color: " + str(pixel))
                 screenshot = ImageGrab.grab(all_screens=True)
                 pixel = screenshot.getpixel((x, y))
                 time.sleep(globals.refresh_rate)

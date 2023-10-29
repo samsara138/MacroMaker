@@ -1,10 +1,10 @@
 ActionType,Data,Comment
-MoveTo,"(178, 186) | 3"
-Click,"(178, 186)"
-Type,"Hello, "
-Wait,1.5
-Type,I'm alive
-Wait,1
-Click,"(12, 40)"
-MoveTo,"(60, 132) | 1"
-Click,"(60, 132)",
+"#This is a example file",
+$CLickPos,"(774, 284)",We first assign the position where we want to click
+$msg,"Hello, ",Assign the value we want to type
+Trigger,"$CLickPos | (255, 255, 255)",Trigger to make sure the click position is the blank of a google doc
+MoveTo,$CLickPos | 1,Move to the click position
+Click,$CLickPose,Click the click position
+Type,$msg,Type the message
+Wait,0.5,Wait for a little
+Type,I'm alive,Finish the message
