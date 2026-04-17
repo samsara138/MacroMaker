@@ -13,5 +13,10 @@
         "RecorderBreakpointKey": "right ctrl",
         "ExecutionPanicKey": "right alt"
     },
-    "Debug": true
+    "Debug": true,
+    "Calibration": {
+        "XOffset": -2400,
+        "YOffset": -1350
+    },
+    "ScreenshotFolder": "./screenshots"
 }

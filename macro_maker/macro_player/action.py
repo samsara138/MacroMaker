@@ -1,9 +1,11 @@
 import pyautogui
 import time
+import random
+import os
 
+from PIL import ImageGrab
 from macro_maker import globals
 from macro_maker.position_translator import center_to_global_translation
-
 
 # Mouse
 def click_on_position(x, y, button="left"):
@@ -54,3 +56,13 @@ def hold_key(key_name, down):
         pyautogui.keyDown(key_name)
     else:
         pyautogui.keyUp(key_name)
+
+# Other
+def screenshot(screenshot_region=""):
+    if(screenshot_region ==""):
+        screenshot = ImageGrab.grab(all_screens=True)
+    else:
+        screenshot = ImageGrab.grab(bbox=screenshot_region, all_screens=True)
+    filename = f"Screenshot_{int(time.time())}_{random.randint(1000, 9999)}.png"
+    filename = os.path.join(globals.screenshot_folder, filename)
+    screenshot.save(filename)

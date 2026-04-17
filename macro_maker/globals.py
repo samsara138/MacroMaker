@@ -16,7 +16,7 @@ x_offset = 1920
 y_offset = 0
 
 debug = False
-
+screenshot_folder= "./screenshots"
 
 # Runtime buffers
 record_mode = False

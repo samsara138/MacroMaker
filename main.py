@@ -1,6 +1,7 @@
 import json
 import time
 import argparse
+import os
 
 from macro_maker import globals, macro_player
 from macro_maker import macro_file_reader
@@ -67,6 +68,9 @@ def read_config():
             need_calibration = True
 
         globals.debug = data["Debug"]
+        globals.screenshot_folder = data["ScreenshotFolder"]
+        os.makedirs(globals.screenshot_folder, exist_ok=True)
+
 
 
 def play_mode():

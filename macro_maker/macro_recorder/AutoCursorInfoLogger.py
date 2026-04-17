@@ -33,7 +33,13 @@ def log_cursor_position():
         x, y = pyautogui.position()
         x, y = position_translator.center_to_global_translation(x, y)
         screenshot = ImageGrab.grab(all_screens=True)
-        pixel = screenshot.getpixel((x, y))
+        screenshot.show()
+        input()
+        print(screenshot.size)
+        try:
+            pixel = screenshot.getpixel((x, y))
+        except:
+            pixel = (-1, -1, -1)
 
         print(f"Cursor position: ({x}, {y}) | {pixel}")
 
