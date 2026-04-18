@@ -1,4 +1,17 @@
 macro_files/*
+screenshots/
+*.csv
+
+
+
+
+
+
+
+
+
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

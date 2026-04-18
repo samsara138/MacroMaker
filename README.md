@@ -94,6 +94,8 @@ The config.json allow you to customize some behaviour of the macro player
 | XOffset               | Screen calibration X offset                                                                    | 1920       |
 | YOffset               | Screen calibration Y offset                                                                    | 0          |
 | Debug                 | Print debug logs to the terminal                                                               | false      |
+| ScreenshotFolder      | The folder where screenshot will be written to                                                 | ./screenshots|
+
 
 
 
