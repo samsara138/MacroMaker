@@ -32,9 +32,12 @@ def parse_tuple(tuple_string):
     t = tuple_string.strip('()').split(',')
     return t[0], t[1]
 
-def parse_unsized_tuple(tuple_string):
+def parse_screenshot_tuple(tuple_string):
     t = tuple_string.strip('()').split(',')
-    return t
+    t = list(map(parse_int, t))
+    left, top = position_translator.global_to_center_translation(t[0], t[1])
+    right, bottom = position_translator.global_to_center_translation(t[2], t[3])
+    return left, top, right, bottom
 
 
 def parse_float_tuple(tuple_string):
@@ -269,8 +272,7 @@ def execute_macro(macro):
             if action_data == "":
                 action.screenshot()
             else:
-                t = parse_unsized_tuple(action_data)
-                t = map(int, t)
+                t = parse_screenshot_tuple(action_data)
                 action.screenshot(t)
 
         index += 1
